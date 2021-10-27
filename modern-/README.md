@@ -25,3 +25,8 @@ pnpm run new
 pnpm run build        # 按产品环境的要求，构建项目
 pnpm run start        # 按产品环境的要求，运行项目
 ```
+```
+Unbundled 开发模式: 非打包模式开发
+pnpm run new
+pnpm run dev:esm
+```

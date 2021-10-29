@@ -17,7 +17,7 @@ import './mock';
 import Login from './pages/login';
 import checkLogin from './utils/checkLogin';
 
-// 初始化stroe
+// 初始化store
 const store = createStore(rootReducer);
 
 function Index() {

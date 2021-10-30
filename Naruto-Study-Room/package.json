@@ -1,7 +1,7 @@
 {
-    "name": "arco-design-pro",
+    "name": "naruto-study-room",
     "version": "1.0.0",
-    "description": "Arco Design Pro",
+    "description": "naruto-study-room",
     "scripts": {
         "prepublishOnly": "npm run build",
         "dev": "arco-scripts dev:site --ip localhost --port 5000",

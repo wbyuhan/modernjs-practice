@@ -1,5 +1,5 @@
 {
-  "name": "Study-Service",
+  "name": "study-api-server",
   "version": "0.1.0",
   "scripts": {
     "reset": "rm -rf node_modules",

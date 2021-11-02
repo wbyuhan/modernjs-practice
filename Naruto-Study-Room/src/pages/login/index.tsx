@@ -13,7 +13,7 @@ export default () => {
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
-        <Logo />
+        <Logo width={40} height={40} />
         <div className={styles['logo-text']}>火影自习室</div>
       </div>
       <div className={styles.banner}>

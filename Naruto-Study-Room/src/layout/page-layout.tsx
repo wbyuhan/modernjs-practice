@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { Layout, Menu } from '@arco-design/web-react';
-import { IconMenuFold, IconMenuUnfold } from '@arco-design/web-react/icon';
+import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 import qs from 'query-string';
 import { useRecoilValue } from 'recoil';
 import Navbar from '../components/NavBar';
@@ -153,7 +153,7 @@ function PageLayout() {
               </Menu>
             </div>
             <div className={styles.collapseBtn} onClick={toggleCollapse}>
-              {collapsed ? <IconMenuUnfold /> : <IconMenuFold />}
+              {collapsed ? <IconRight /> : <IconLeft />}
             </div>
           </Sider>
         )}

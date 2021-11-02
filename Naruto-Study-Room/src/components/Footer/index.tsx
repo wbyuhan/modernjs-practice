@@ -10,7 +10,7 @@ export default (props: FooterProps = {}) => {
   const { className, ...restProps } = props;
   return (
     <Footer className={cs(styles.footer, className)} {...restProps}>
-      Arco Design Pro
+      GIP UED & 火影文化有限公司 &&&& ⓒ Copyright ByteDance 2021 京ICP备19059916号-18
     </Footer>
   );
 };

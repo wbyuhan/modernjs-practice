@@ -3,8 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { themeColor } = require('../src/settings.json');
-const env = process.env;
-console.log('%c 🍥 env: ', 'font-size:20px;background-color: #E41A6A;color:#fff;', env);
 
 const ArcoDesignWebpackPlugin = require('@arco-design/webpack-plugin');
 

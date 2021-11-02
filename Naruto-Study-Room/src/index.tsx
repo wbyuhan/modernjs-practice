@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import { Router, Switch, Route } from 'react-router-dom';
 import history from './history';
 import PageLayout from './layout/page-layout';
-import Setting from './components/Settings';
 import { GlobalContext } from './context';
 import './style/index.less';
 import './mock';
@@ -73,7 +72,7 @@ function Index() {
             <Route path="/user/login" component={Login} />
             <Route path="/" component={PageLayout} />
           </Switch>
-          <Setting />
+          {/* <Setting /> */}
         </GlobalContext.Provider>
       </ConfigProvider>
     </Router>

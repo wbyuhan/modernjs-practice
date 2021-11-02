@@ -10,8 +10,7 @@ import {
   Space,
 } from '@arco-design/web-react';
 import { IconSunFill, IconMoonFill } from '@arco-design/web-react/icon';
-import { useSelector, useDispatch } from 'react-redux';
-import { ReducerState } from '../../redux';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import useLocale from '../../utils/useLocale';
 import Logo from '../../assets/logo.svg';
 import history from '../../history';
@@ -19,12 +18,12 @@ import history from '../../history';
 import MessageBox from '../MessageBox';
 
 import styles from './style/index.module.less';
+import { initialState } from '../../recoil/global';
 
 function Navbar() {
   const locale = useLocale();
-  const theme = useSelector((state: ReducerState) => state.global.theme);
-  const userInfo = useSelector((state: ReducerState) => state.global.userInfo);
-  const dispatch = useDispatch();
+  const { theme, userInfo } = useRecoilValue(initialState);
+  const initialValue = useSetRecoilState(initialState);
 
   function logout() {
     localStorage.setItem('userStatus', 'logout');
@@ -85,10 +84,10 @@ function Navbar() {
               type="text"
               icon={theme === 'light' ? <IconMoonFill /> : <IconSunFill />}
               onClick={() =>
-                dispatch({
-                  type: 'toggle-theme',
-                  payload: { theme: theme === 'light' ? 'dark' : 'light' },
-                })
+                initialValue((oldValue) => ({
+                  ...oldValue,
+                  theme: theme === 'light' ? 'dark' : 'light',
+                }))
               }
               style={{ fontSize: 20 }}
             />

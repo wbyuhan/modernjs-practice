@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { Switch, Divider, InputNumber } from '@arco-design/web-react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ReducerState } from '../../redux';
 import useLocale from '../../utils/useLocale';
 import styles from './style/block.module.less';
+
+import { initialState } from '../../recoil/global';
 
 export interface BlockProps {
   title?: ReactNode;
@@ -14,8 +15,8 @@ export interface BlockProps {
 export default function Block(props: BlockProps) {
   const { title, options, children } = props;
   const locale = useLocale();
-  const settings = useSelector((state: ReducerState) => state.global.settings);
-  const dispatch = useDispatch();
+  const { settings } = useRecoilValue(initialState);
+  const setInitialData = useSetRecoilState(initialState);
 
   return (
     <div className={styles.block}>
@@ -36,7 +37,10 @@ export default function Block(props: BlockProps) {
                       ...settings,
                       [option.value]: checked,
                     };
-                    dispatch({ type: 'update-settings', payload: { settings: newSetting } });
+                    setInitialData((initValue) => ({
+                      ...initValue,
+                      settings: newSetting,
+                    }));
                     // set color week
                     if (checked && option.value === 'colorWeek') {
                       document.body.style.filter = 'invert(80%)';
@@ -57,7 +61,10 @@ export default function Block(props: BlockProps) {
                       ...settings,
                       [option.value]: value,
                     };
-                    dispatch({ type: 'update-settings', payload: { settings: newSetting } });
+                    setInitialData((initValue) => ({
+                      ...initValue,
+                      settings: newSetting,
+                    }));
                   }}
                 />
               )}

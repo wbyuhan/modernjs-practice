@@ -1,5 +1,6 @@
 import Mock from 'mockjs';
 import setupMock from '../utils/setupMock';
+import { token } from './token';
 
 setupMock({
   setup() {
@@ -41,6 +42,7 @@ setupMock({
       if (userName === 'admin' && password === 'admin') {
         return {
           status: 'ok',
+          token,
         };
       }
       return {

@@ -1,16 +1,16 @@
 import { Alert, Card, Link, Typography, Tag, Image } from '@arco-design/web-react';
 import { IconDoubleRight } from '@arco-design/web-react/icon';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { ReducerState } from '../../redux';
+import { useRecoilValue } from 'recoil';
 import useLocale from '../../utils/useLocale';
 import imgWorkplace from '../../assets/workplace.png';
 import CodeBlock from './code-block';
 import styles from './style/index.module.less';
+import { initialState } from '../../recoil/global';
 
 export default function Welcome() {
   const locale = useLocale();
-  const userInfo = useSelector((state: ReducerState) => state.global.userInfo) || {};
+  const { userInfo } = useRecoilValue(initialState);
   return (
     <div className={styles.container}>
       <div className={styles.header}>

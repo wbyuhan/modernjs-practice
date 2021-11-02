@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Drawer, Alert, Message } from '@arco-design/web-react';
 import { IconSettings } from '@arco-design/web-react/icon';
+import { useRecoilValue } from 'recoil';
 import copy from 'copy-to-clipboard';
-import { useSelector } from 'react-redux';
-import { ReducerState } from '../../redux';
 import Block from './block';
 import ColorPanel from './color';
 import useLocale from '../../utils/useLocale';
 import styles from './style/index.module.less';
 
+import { initialState } from '../../recoil/global';
+
 function Setting() {
   const [visible, setVisible] = useState(false);
   const locale = useLocale();
-  const settings = useSelector((state: ReducerState) => state.global.settings);
+  const { settings } = useRecoilValue(initialState);
 
   function onCopySettings() {
     copy(JSON.stringify(settings, null, 2));

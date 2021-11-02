@@ -13,7 +13,12 @@
     "outDir": "es",
     "lib": ["es5", "dom"],
     "types": ["node", "jest"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    // "paths":{
+    //   "@/*": [
+    //     "./src/*"
+    //   ],
+    // }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]

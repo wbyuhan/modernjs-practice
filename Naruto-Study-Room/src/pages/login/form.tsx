@@ -2,9 +2,9 @@ import { Form, Input, Checkbox, Link, Button, Space } from '@arco-design/web-rea
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import { IconLock, IconUser } from '@arco-design/web-react/icon';
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import styles from './style/index.module.less';
 import history from '../../history';
+import { demoRequest } from '../../service/Apis';
 
 export default function LoginForm() {
   const formRef = useRef<FormInstance>();
@@ -12,7 +12,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [rememberPassword, setRememberPassword] = useState(false);
 
-  function afterLoginSuccess(params) {
+  function afterLoginSuccess({ params, token }) {
     // 记住密码
     if (rememberPassword) {
       localStorage.setItem('loginParams', JSON.stringify(params));
@@ -20,7 +20,7 @@ export default function LoginForm() {
       localStorage.removeItem('loginParams');
     }
     // 记录登录状态
-    localStorage.setItem('userStatus', 'login');
+    localStorage.setItem('token', token);
     // 跳转首页
     window.location.href = history.createHref({
       pathname: '/',
@@ -30,12 +30,11 @@ export default function LoginForm() {
   function login(params) {
     setErrorMessage('');
     setLoading(true);
-    axios
-      .post('/api/user/login', params)
-      .then((res) => {
-        const { status, msg } = res.data;
+    demoRequest(params)
+      .then((res: any) => {
+        const { status, msg, token } = res?.data;
         if (status === 'ok') {
-          afterLoginSuccess(params);
+          afterLoginSuccess({ params, token });
         } else {
           setErrorMessage(msg || '登录出错，请刷新重试');
         }
@@ -64,8 +63,8 @@ export default function LoginForm() {
 
   return (
     <div className={styles['login-form-wrapper']}>
-      <div className={styles['login-form-title']}>登录 Arco Design Pro</div>
-      <div className={styles['login-form-sub-title']}>登录 Arco Design Pro</div>
+      <div className={styles['login-form-title']}>登录 火影自习室</div>
+      <div className={styles['login-form-sub-title']}>登录 火影自习室</div>
       <div className={styles['login-form-error-msg']}>{errorMessage}</div>
       <Form className={styles['login-form']} layout="vertical" ref={formRef}>
         <Form.Item field="userName" rules={[{ required: true, message: '用户名不能为空' }]}>

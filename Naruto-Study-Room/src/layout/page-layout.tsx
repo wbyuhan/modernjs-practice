@@ -2,8 +2,8 @@ import React, { useState, useRef, useMemo } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { Layout, Menu } from '@arco-design/web-react';
 import { IconMenuFold, IconMenuUnfold } from '@arco-design/web-react/icon';
-import { useSelector } from 'react-redux';
 import qs from 'query-string';
+import { useRecoilValue } from 'recoil';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import LoadingBar from '../components/LoadingBar';
@@ -11,10 +11,10 @@ import { routes, defaultRoute } from '../routes';
 import { isArray } from '../utils/is';
 import history from '../history';
 import useLocale from '../utils/useLocale';
-import { ReducerState } from '../redux';
 import getUrlParams from '../utils/getUrlParams';
 import lazyload from '../utils/lazyload';
 import styles from './style/layout.module.less';
+import { initialState } from '../recoil/global';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -87,7 +87,7 @@ function PageLayout() {
   const defaultSelectedKeys = [currentComponent || defaultRoute];
 
   const locale = useLocale();
-  const settings = useSelector((state: ReducerState) => state.global.settings);
+  const { settings } = useRecoilValue(initialState);
 
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [selectedKeys, setSelectedKeys] = useState<string[]>(defaultSelectedKeys);

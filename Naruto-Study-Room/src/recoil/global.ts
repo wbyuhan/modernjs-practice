@@ -1,3 +1,4 @@
+import { atom, selector } from 'recoil';
 import defaultSettings from '../settings.json';
 
 const defaultTheme = localStorage.getItem('arco-theme') || 'light';
@@ -26,12 +27,42 @@ export interface GlobalState {
   };
 }
 
-const initialState: GlobalState = {
-  theme: defaultTheme,
-  settings: defaultSettings,
-};
+export interface InitState {
+  key: string;
+  // default: GlobalState;
+}
 
-export default function (state = initialState, action) {
+export const initialState = atom({
+  key: 'initialState',
+  default: {
+    theme: defaultTheme,
+    settings: defaultSettings,
+    userInfo: {
+      name: undefined,
+      avatar: undefined,
+      job: undefined,
+      organization: undefined,
+      location: undefined,
+      email: undefined,
+    },
+  },
+});
+
+export const charCountState = selector({
+  key: 'charCountState', // unique ID (with respect to other atoms/selectors)
+  get: ({ get }) => {
+    const text = get(initialState);
+
+    return text;
+  },
+});
+
+export const demoState = atom({
+  key: 'demoState',
+  default: 1,
+});
+
+export default function(state = initialState, action) {
   switch (action.type) {
     case 'toggle-theme': {
       const { theme } = action.payload;

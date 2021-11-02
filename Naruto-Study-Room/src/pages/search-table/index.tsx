@@ -8,17 +8,11 @@ import {
   Breadcrumb,
   Card,
 } from '@arco-design/web-react';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
-import {
-  UPDATE_FORM_PARAMS,
-  UPDATE_LIST,
-  UPDATE_LOADING,
-  UPDATE_PAGINATION,
-} from './redux/actionTypes';
+import { useRecoilState } from 'recoil';
 import useLocale from '../../utils/useLocale';
-import { ReducerState } from '../../redux';
 import styles from './style/index.module.less';
+import { tableStatus } from './recoil';
+import { tableDataRequest } from '../../service/Apis';
 
 function SearchTable() {
   const locale = useLocale();
@@ -68,35 +62,27 @@ function SearchTable() {
     },
   ];
 
-  const searchTableState = useSelector((state: ReducerState) => state.searchTable);
+  const [searchTableState, setTableState] = useRecoilState(tableStatus);
 
   const { data, pagination, loading, formParams } = searchTableState;
-
-  const dispatch = useDispatch();
-
   useEffect(() => {
     fetchData();
   }, []);
 
   function fetchData(current = 1, pageSize = 10, params = {}) {
-    dispatch({ type: UPDATE_LOADING, payload: { loading: true } });
-    axios
-      .get(`/api/policy`, {
-        params: {
-          page: current,
-          pageSize,
-          ...params,
-        },
-      })
-      .then((res) => {
-        dispatch({ type: UPDATE_LIST, payload: { data: res.data.list } });
-        dispatch({
-          type: UPDATE_PAGINATION,
-          payload: { pagination: { ...pagination, current, pageSize, total: res.data.total } },
-        });
-        dispatch({ type: UPDATE_LOADING, payload: { loading: false } });
-        dispatch({ type: UPDATE_FORM_PARAMS, payload: { params } });
+    setTableState({ ...searchTableState, loading: true });
+    tableDataRequest({
+      page: current,
+      pageSize,
+      ...params,
+    }).then((res: object | any) => {
+      setTableState({
+        ...searchTableState,
+        data: res.data.list,
+        pagination: { ...pagination, current, pageSize, total: res.data.total },
+        loading: false,
       });
+    });
   }
 
   function onChangeTable(pagination) {

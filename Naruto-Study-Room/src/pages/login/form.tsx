@@ -2,6 +2,7 @@ import { Form, Input, Checkbox, Link, Button, Space } from '@arco-design/web-rea
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import { IconLock, IconUser } from '@arco-design/web-react/icon';
 import React, { useEffect, useRef, useState } from 'react';
+import Timer from './timer';
 import styles from './style/index.module.less';
 import history from '../../history';
 import { demoRequest } from '../../service/Apis';
@@ -63,8 +64,10 @@ export default function LoginForm() {
 
   return (
     <div className={styles['login-form-wrapper']}>
-      <div className={styles['login-form-title']}>登录 火影自习室</div>
-      <div className={styles['login-form-sub-title']}>登录 火影自习室</div>
+      <div className={styles['login-form-title']}>欢迎回来</div>
+      <div className={styles['login-form-sub-title']}>
+        <Timer />
+      </div>
       <div className={styles['login-form-error-msg']}>{errorMessage}</div>
       <Form className={styles['login-form']} layout="vertical" ref={formRef}>
         <Form.Item field="userName" rules={[{ required: true, message: '用户名不能为空' }]}>

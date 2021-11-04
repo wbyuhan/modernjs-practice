@@ -21,7 +21,7 @@ import MessageBox from '../MessageBox';
 import styles from './style/index.module.less';
 import { initialState } from '../../recoil/global';
 
-const IconFont = Icon.addFromIconFontCn({ src: '//at.alicdn.com/t/font_734522_etctjbb1bg6.js' });
+const IconFont = Icon.addFromIconFontCn({ src: '//at.alicdn.com/t/font_734522_13vp4s774m5.js' });
 
 const iconStyle = {
   marginRight: 8,

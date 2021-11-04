@@ -11,4 +11,19 @@ const tableDataRequest = async (params) =>
 const frinendDataRequest = async (params?: {} | undefined) =>
   request({ url: '/api/data/flow', method: 'GET', data: params });
 
-export { demoRequest, userInfoRequest, tableDataRequest, frinendDataRequest };
+const managermentsListRequest = async (params?: {} | undefined) =>
+  request({ url: '/api/user/manager/list', method: 'post', data: params });
+
+export interface Response {
+  data: any;
+  status: number;
+  statusText: string;
+}
+
+export {
+  demoRequest,
+  userInfoRequest,
+  tableDataRequest,
+  frinendDataRequest,
+  managermentsListRequest,
+};

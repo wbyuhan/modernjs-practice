@@ -83,14 +83,17 @@ function UserManagement() {
     {
       title: '账户余额',
       dataIndex: 'accountBalance',
+      sorter: (a, b) => a - b,
     },
     {
       title: '累计学习时长',
       dataIndex: 'studyTime',
+      sorter: (a, b) => a - b,
     },
     {
       title: '可用兑换时长',
       dataIndex: 'duration',
+      sorter: (a, b) => a - b,
     },
     {
       title: '点击查看',

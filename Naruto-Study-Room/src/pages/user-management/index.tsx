@@ -10,34 +10,22 @@ import {
   Form,
   Input,
   PageHeader,
+  Descriptions,
 } from '@arco-design/web-react';
 import { managermentsListRequest } from '../../service/Apis';
 
 import styles from './style/index.module.less';
+import { PaginationType, paginationInit } from '../../utils/defaultPagunation';
 
 const FormItem = Form.Item;
 
-type paginationType = {
-  sizeCanChange: boolean;
-  showTotal: boolean;
-  pageSize: number;
-  current: number;
-  pageSizeChangeResetCurrent: boolean;
-};
-
-const paginationInit: paginationType = {
-  sizeCanChange: true,
-  showTotal: true,
-  pageSize: 10,
-  current: 1,
-  pageSizeChangeResetCurrent: true,
-};
 function UserManagement() {
   const [form] = Form.useForm();
   // hooks
   const [loading, setLoading] = useState<boolean>(false);
   const [tableData, setTableData] = useState<[]>([]);
-  const [pagination, setPagination] = useState<paginationType>(paginationInit);
+  const [pagination, setPagination] = useState<PaginationType>(paginationInit);
+  const [descriptions, setDescriptions] = useState<{ label: string; value: number | string }[]>([]);
   // handlebars
 
   const onChangeTable = (paginationValue) => {
@@ -49,11 +37,34 @@ function UserManagement() {
   const init = async () => {
     setLoading(true);
     const result: Response | any = await managermentsListRequest();
-    const { status, data } = result;
+    const {
+      status,
+      data: { total, list },
+    } = result;
+
     if (status === 200) {
       setLoading(false);
-      setTableData(data.list);
-      // setPagination((val) => ({...val,}))
+      setTableData(list);
+      const resouce = [
+        {
+          label: '总用户数',
+          value: total,
+        },
+        {
+          label: '今日新增用户',
+          value: total,
+        },
+        {
+          label: '7天新增用户',
+          value: total,
+        },
+        {
+          label: '30天新增用户数',
+          value: total,
+        },
+      ];
+      setDescriptions(resouce);
+      setPagination((val) => ({ ...val, total }));
     }
   };
 
@@ -114,8 +125,8 @@ function UserManagement() {
     <div className={styles.container}>
       <PageHeader
         style={{ background: 'var(--color-bg-2)' }}
-        title="ArcoDesign"
-        subTitle="This is a description"
+        title="用户管理"
+        subTitle="用户列表"
         breadcrumb={{
           routes: [
             {
@@ -129,6 +140,9 @@ function UserManagement() {
           ],
         }}
       />
+      <Card bordered={false} style={{ paddingRight: '50%' }}>
+        <Descriptions colon=" :" column={4} layout="inline-horizontal" data={descriptions} />
+      </Card>
       <Card bordered={false}>
         <Form
           form={form}
@@ -152,6 +166,10 @@ function UserManagement() {
             label="用户注册时间"
             extra="请输入用户注册时间"
             field="date"
+            wrapperCol={{
+              span: 7,
+              offset: 0,
+            }}
             rules={[
               {
                 required: true,
@@ -165,9 +183,9 @@ function UserManagement() {
               return value && value.begin ? [value.begin, value.end] : [];
             }}
           >
-            <DatePicker.RangePicker />
+            <DatePicker.RangePicker style={{ width: '310px' }} />
           </FormItem>
-          <FormItem wrapperCol={{ offset: 20 }}>
+          <FormItem wrapperCol={{ offset: 0 }}>
             <Button type="primary" htmlType="submit">
               查询
             </Button>

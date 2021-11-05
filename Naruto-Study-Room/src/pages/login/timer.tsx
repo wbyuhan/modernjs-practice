@@ -7,7 +7,7 @@ function Timer() {
     setTimer(new Date().getTime());
   }, 100);
 
-  return <Statistic title="CreatedTime" value={timer} format="YYYY-MM-DD HH:mm:ss" />;
+  return <Statistic title="北京时间：" value={timer} format="YYYY-MM-DD HH:mm:ss" />;
 }
 
 export default Timer;

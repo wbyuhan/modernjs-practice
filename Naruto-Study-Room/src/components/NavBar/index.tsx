@@ -17,6 +17,7 @@ import useLocale from '../../utils/useLocale';
 import Logo from '../../assets/logo.svg';
 import history from '../../history';
 import MessageBox from '../MessageBox';
+import GreetingTerms from '../GreetingTerms';
 
 import styles from './style/index.module.less';
 import { initialState } from '../../recoil/global';
@@ -132,6 +133,9 @@ function Navbar() {
               style={{ fontSize: 20 }}
             />
           </Tooltip>
+        </li>
+        <li style={{ padding: '0 8px', marginRight: '15px' }}>
+          <GreetingTerms text="你好！美好的一天，从阅读开始！" />
         </li>
         {userInfo && (
           <li>

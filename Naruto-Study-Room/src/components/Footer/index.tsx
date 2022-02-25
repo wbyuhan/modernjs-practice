@@ -10,7 +10,7 @@ export default (props: FooterProps = {}) => {
   const { className, ...restProps } = props;
   return (
     <Footer className={cs(styles.footer, className)} {...restProps}>
-      GIP UED & 火影文化有限公司 &&&& ⓒ Copyright ByteDance 2021 京ICP备19059916号-18
+      GIP UED & 原木花有限公司 &&&& ⓒ Copyright ByteDance 2018 豫ICP备18037444号-1
     </Footer>
   );
 };

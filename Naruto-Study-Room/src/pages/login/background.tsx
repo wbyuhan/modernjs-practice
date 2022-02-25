@@ -2,30 +2,20 @@ import React from 'react';
 import { Carousel } from '@arco-design/web-react';
 
 const imageSrc = [
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Abstract_re_l9xy.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Co-working_re_w93t.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Control_panel_re_y3ar.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Design_notes_re_eklr.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Designer_life_re_6ywf.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Developer_activity_re_39tg.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Hello_re_3evm.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_In_sync_re_jlqd.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_My_documents_re_13dc.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Organizing_projects_re_9p1k.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Our_solution_re_8yk6.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Programmer_re_owql.png',
-  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/undraw_Thought_process_re_om58.png',
+  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/%E7%AE%80%E7%BA%A6%E5%AE%9E%E6%99%AF%E8%BD%BB%E8%AE%BE%E8%AE%A1%E6%A8%AA%E7%89%88%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E5%A5%97%E8%A3%85%20(1).jpg',
+  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/%E7%AE%80%E7%BA%A6%E5%AE%9E%E6%99%AF%E8%BD%BB%E8%AE%BE%E8%AE%A1%E6%A8%AA%E7%89%88%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E5%A5%97%E8%A3%85%20(2).jpg',
+  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/%E7%AE%80%E7%BA%A6%E5%AE%9E%E6%99%AF%E8%BD%BB%E8%AE%BE%E8%AE%A1%E6%A8%AA%E7%89%88%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E5%A5%97%E8%A3%85.jpg',
+  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/%E7%AE%80%E7%BA%A6%E6%96%87%E8%89%BA%E6%B8%85%E6%96%B0%E6%97%85%E6%B8%B8%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E7%94%9F%E6%B4%BB%E5%A8%B1%E4%B9%90%20(1).jpg',
+  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/%E7%AE%80%E7%BA%A6%E6%96%87%E8%89%BA%E6%B8%85%E6%96%B0%E6%97%85%E6%B8%B8%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E7%94%9F%E6%B4%BB%E5%A8%B1%E4%B9%90.jpg',
+  'https://image-1257802703.cos.ap-shanghai.myqcloud.com/%E7%AE%80%E7%BA%A6%E6%96%87%E8%89%BA%E6%B8%85%E6%96%B0%E6%97%85%E6%B8%B8%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E7%94%9F%E6%B4%BB%E5%A8%B1%E4%B9%90.png',
 ];
 const currentSrc = [
-  imageSrc[parseInt((13 * Math.random()) as any)],
-  imageSrc[parseInt((13 * Math.random()) as any)],
-  imageSrc[parseInt((13 * Math.random()) as any)],
+  imageSrc[parseInt((5 * Math.random()) as any)],
+  imageSrc[parseInt((5 * Math.random()) as any)],
+  imageSrc[parseInt((5 * Math.random()) as any)],
+  imageSrc[parseInt((5 * Math.random()) as any)],
+  imageSrc[parseInt((5 * Math.random()) as any)],
 ];
-console.log(
-  '%c 🥗 currentSrc: ',
-  'font-size:20px;background-color: #2EAFB0;color:#fff;',
-  currentSrc
-);
 
 function Background() {
   return (

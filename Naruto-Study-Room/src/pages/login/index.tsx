@@ -20,6 +20,9 @@ export default () => {
       <div className={styles.banner}>
         <Background />
       </div>
+      <div className={styles.conicContent}>
+        <div className={styles.conic} />
+      </div>
       <div className={styles.container}>
         <Layout style={{ height: '100%' }}>
           <Header style={{ height: '70px' }}>
